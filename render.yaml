@@ -23,7 +23,7 @@ services:
         fromService:
           type: web
           name: ipsas-backend
-          property: hostname
+          property: host
       - key: REDIS_URL
         value: ""
       - key: CORS_ALLOWED_ORIGINS
