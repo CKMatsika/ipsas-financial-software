@@ -24,11 +24,11 @@ services:
       - key: DEBUG
         value: "False"
       - key: ALLOWED_HOSTS
-        fromServiceHostname: ipsas-backend
+        value: ${RENDER_EXTERNAL_HOSTNAME}
       - key: REDIS_URL
         value: ""
       - key: CORS_ALLOWED_ORIGINS
-        value: "https://ipsas-financial-frontend.vercel.app"
+        value: "https://ipsas-financial-software.vercel.app"
       - key: DB_NAME
         fromDatabase:
           name: ipsas-postgres
@@ -55,4 +55,3 @@ services:
 databases:
   - name: ipsas-postgres
     plan: free
-
