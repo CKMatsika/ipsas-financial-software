@@ -11,10 +11,13 @@ services:
       python manage.py collectstatic --noinput
     startCommand: |
       cd backend && \
-      gunicorn ipsas_financial.wsgi:application --bind 0.0.0.0:10000
+      gunicorn ipsas_financial.wsgi:application --bind 0.0.0.0:$PORT
+    postDeployCommand: |
+      cd backend && \
+      python manage.py migrate --noinput
     autoDeploy: true
     runtime:
-      pythonVersion: 3.13.0
+      pythonVersion: 3.11.9
     envVars:
       - key: SECRET_KEY
         generateValue: true
@@ -52,3 +55,4 @@ services:
 databases:
   - name: ipsas-postgres
     plan: free
+
