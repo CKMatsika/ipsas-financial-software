@@ -12,23 +12,22 @@ services:
     startCommand: |
       cd backend && \
       gunicorn ipsas_financial.wsgi:application --bind 0.0.0.0:$PORT
-    postDeployCommand: |
-      cd backend && \
-      python manage.py migrate --noinput
     autoDeploy: true
-    runtime:
-      pythonVersion: 3.11.9
+    pythonVersion: 3.11.9
     envVars:
       - key: SECRET_KEY
         generateValue: true
       - key: DEBUG
         value: "False"
       - key: ALLOWED_HOSTS
-        value: ${RENDER_EXTERNAL_HOSTNAME}
+        fromService:
+          type: web
+          name: ipsas-backend
+          property: hostname
       - key: REDIS_URL
         value: ""
       - key: CORS_ALLOWED_ORIGINS
-        value: "https://ipsas-financial-software.vercel.app"
+        value: "https://ipsas-financial-frontend.vercel.app"
       - key: DB_NAME
         fromDatabase:
           name: ipsas-postgres
@@ -50,7 +49,6 @@ services:
           name: ipsas-postgres
           property: port
     healthCheckPath: /admin/login/
-    domains: []
 
 databases:
   - name: ipsas-postgres
