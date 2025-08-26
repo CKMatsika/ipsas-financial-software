@@ -13,7 +13,7 @@ services:
       cd backend && \
       gunicorn ipsas_financial.wsgi:application --bind 0.0.0.0:$PORT
     autoDeploy: true
-    pythonVersion: 3.11.9
+    runtime: python
     envVars:
       - key: SECRET_KEY
         generateValue: true
