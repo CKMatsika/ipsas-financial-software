@@ -3,6 +3,10 @@
   "version": "1.0.0",
   "description": "IPSAS Financial Software - React Frontend",
   "private": true,
+  "engines": {
+    "node": "18.x",
+    "npm": "10.x"
+  },
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
